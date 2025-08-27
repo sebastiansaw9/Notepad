@@ -1,4 +1,4 @@
-# 📝 Modern Notepad
+# 📝 Notepad
 
 A sleek, animated, and responsive browser-based notepad with auto-save, typewriter sound effects, dark mode toggle, and logout functionality.
 
@@ -11,6 +11,7 @@ A sleek, animated, and responsive browser-based notepad with auto-save, typewrit
 - 🧼 **Glassmorphism UI**: Stylish blurred interface with soft shadows
 - 🔐 **Logout Button**: Clears notes and redirects to `index.html`
 - 📱 **Responsive**: Optimized for desktop and mobile
+- **PASSWORD IS 1234!**
 
 ## 📦 How to Use
 
