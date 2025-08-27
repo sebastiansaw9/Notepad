@@ -1,0 +1,59 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+
+.login-container {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 320px; /* Controls the width of both input and button */
+  box-sizing: border-box;
+}
+
+
+#Password {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+#Password:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+
+#button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#button:hover {
+  background-color: #357abd;
+  transform: translateY(-2px);
+}
+
+#button:active {
+  transform: scale(0.98);
+}

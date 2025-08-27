@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📝Notepad</title>
+  <style>
+    /* Reset & Base Styling */
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100%;
+      background: linear-gradient(145deg, #e3eaf4, #f8fafd);
+      display: flex;
+      flex-direction: column;
+      transition: background 0.4s ease;
+    }
+
+    body.dark {
+      background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+      color: #f0f0f0;
+    }
+
+    header {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      color: #333;
+      font-size: 24px;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    body.dark header {
+      background: rgba(0, 0, 0, 0.3);
+      color: #f0f0f0;
+    }
+
+    #editor {
+      flex: 1;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 900px;
+      height: 100%;
+      padding: 20px;
+      font-size: 17px;
+      line-height: 1.7;
+      border: none;
+      outline: none;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.65);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+      resize: none;
+      backdrop-filter: blur(12px);
+    }
+
+    body.dark #editor {
+      background: rgba(50, 50, 50, 0.4);
+      color: #f0f0f0;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    footer {
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      color: #888;
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.4s ease;
+    }
+
+    body.dark footer {
+      background: rgba(0, 0, 0, 0.3);
+      color: #aaa;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.5);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark .theme-toggle {
+      background: rgba(0, 0, 0, 0.5);
+      color: #f0f0f0;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logout-button {
+    position: absolute;
+    top: 20px;
+    right: 140px; /* Adjust to not overlap with the theme toggle */
+    background: rgba(255, 100, 100, 0.5);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+    body.dark .logout-button {
+    background: rgba(255, 60, 60, 0.5);
+    }
+
+  </style>
+</head>
+<body class="fade-in">
+  <header>📝 Notepad</header>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  <button class="logout-button" onclick="logout()">Logout</button>
+  <textarea id="editor" placeholder="Start typing..."></textarea>
+  <footer>💾 Saved automatically. Click outside to update save.</footer>
+
+  <script>
+    const editor = document.getElementById('editor');
+    const STORAGE_KEY = 'modernNotepadContent';
+
+    // Load saved content
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        editor.value = saved;
+      }
+    });
+
+    // Auto-save content
+    editor.addEventListener('input', () => {
+      localStorage.setItem(STORAGE_KEY, editor.value);
+      playClickSound();
+    });
+
+    // Sound setup
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playClickSound() {
+      const o = audioContext.createOscillator();
+      const g = audioContext.createGain();
+      o.type = 'square';
+      o.frequency.value = 600; // Higher = more clicky
+      g.gain.value = 0.03; // Very soft
+      o.connect(g);
+      g.connect(audioContext.destination);
+      o.start();
+      o.stop(audioContext.currentTime + 0.05); // Short click
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+    }
+    function logout() {
+  // Clear the saved content
+  localStorage.removeItem(STORAGE_KEY);
+
+  // Optional: clear all localStorage
+  // localStorage.clear();
+
+  // Redirect to index.html
+  window.location.href = 'index.html';
+}
+
+  </script>
+</body>
+</html>
