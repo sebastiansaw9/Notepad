@@ -31,11 +31,11 @@ Use the "Logout" button to clear saved notes and return to index.html.
 bash
 Copy code
 modern-notepad/
-├── index.html          # Redirect page (create this yourself)
-├── notepad.html        # The main notepad editor
+├── index.html
+├── notepad.html
 ├── README.md
 ├── login.css
-├── script.js           # Project documentation
+├── script.js
 📸 Preview
 (Add a screenshot here if you'd like)
 
