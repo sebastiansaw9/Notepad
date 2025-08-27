@@ -32,7 +32,9 @@ Copy code
 modern-notepad/
 ├── index.html          # Redirect page (create this yourself)
 ├── notepad.html        # The main notepad editor
-├── README.md           # Project documentation
+├── README.md
+├── login.css
+├── script.js           # Project documentation
 📸 Preview
 (Add a screenshot here if you'd like)
 
